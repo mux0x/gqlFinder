@@ -41,7 +41,7 @@ func processURL(url string, re *regexp.Regexp, seen map[string]bool) {
 }
 
 func main() {
-	re := regexp.MustCompile(`(mutation\s|query\s)[A-Za-z0-9_]+[^\(]\([^\)]+\)[^` + "`" + `'"]+`)
+	re := regexp.MustCompile(`((mutation\s|query\s)[A-Za-z0-9_]+[^\(]\([^\)]+\)[^` + "`" + `"']+|query\s[A-Za-z0-9_]+(\s{|{)[^` + "`" + `"']+)`)
 	seen := make(map[string]bool) // Map to track seen matches
 
 	scanner := bufio.NewScanner(os.Stdin)
